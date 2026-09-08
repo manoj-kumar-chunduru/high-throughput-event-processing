@@ -1,0 +1,9 @@
+services:
+  event-platform:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      EVENT_PARTITIONS: "8"
+      EVENT_WORKERS: "8"
+      EVENT_QUEUE_CAPACITY: "2000"
