@@ -1,5 +1,6 @@
 import hashlib
 
+
 def partition_for(key: str, partition_count: int) -> int:
     if partition_count <= 0:
         raise ValueError("partition_count must be positive")

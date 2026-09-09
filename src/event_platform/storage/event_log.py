@@ -1,6 +1,7 @@
 from collections import deque
 from threading import Lock
 
+
 class EventLog:
     def __init__(self, capacity: int = 10000):
         self._events = deque(maxlen=capacity)

@@ -1,6 +1,7 @@
 from threading import Lock
 from time import perf_counter
 
+
 class Metrics:
     def __init__(self):
         self._lock = Lock()
@@ -29,6 +30,7 @@ class Metrics:
                 "dead_lettered": self.dead_lettered,
                 "latency_samples": len(self.latencies),
             }
+
 
 class Timer:
     def __init__(self, metrics):
