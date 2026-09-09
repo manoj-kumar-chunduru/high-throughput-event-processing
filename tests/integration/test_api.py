@@ -1,8 +1,15 @@
+import pytest
 from fastapi.testclient import TestClient
 
-from event_platform.api import app
+from event_platform.api import app, engine
 
 client = TestClient(app)
+
+
+@pytest.fixture(scope="module", autouse=True)
+def shutdown_engine():
+    yield
+    engine.shutdown()
 
 
 def test_health():
