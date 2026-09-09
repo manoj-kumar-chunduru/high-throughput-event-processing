@@ -1,3 +1,5 @@
+from contextlib import asynccontextmanager
+
 from fastapi import FastAPI, HTTPException
 
 from .config import Settings
@@ -12,7 +14,19 @@ engine = ProcessingEngine(
     settings.max_retries,
     settings.retry_base_seconds,
 )
-app = FastAPI(title="High-Throughput Event Processing Platform", version="1.0.0")
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    yield
+    engine.shutdown()
+
+
+app = FastAPI(
+    title="High-Throughput Event Processing Platform",
+    version="1.0.0",
+    lifespan=lifespan,
+)
 
 
 @app.get("/health")
